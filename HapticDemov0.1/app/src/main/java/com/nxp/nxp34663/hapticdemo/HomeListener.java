@@ -38,6 +38,8 @@
  *   Modification and reverse engineering of this software are strictly
  *   prohibited.
  *
+ *   Aurthor: Jiangtao.zeng
+ *   Date:    02/01/2018
  */
 
 package com.nxp.nxp34663.hapticdemo;
@@ -48,7 +50,7 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.util.Log;
 
-public class HomeListener {
+class HomeListener {
 
     public KeyFun mKeyFun;
     public Context mContext;
