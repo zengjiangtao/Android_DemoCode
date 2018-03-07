@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">Haptic Demo</string>
+    <string name="strTitle">Haptic Demo 1.0</string>
+    <string name="strObj0">Pattern 0</string>
+    <string name="strObj1">Pattern 1</string>
+    <string name="strObj2">Pattern 2</string>
+    <string name="strObj3">Pattern 3</string>
+    <string name="strEmpty"></string>
+    <string name="strEnKeyup">Enable Key-up Vibration</string>
+    <string name="strKeyDownTime">KeyDown Vibrating: </string>
+    <string name="strKeyUpTime">KeyUp Vibrating:     </string>
+    <string name="strTimeUnit">ms</string>
+    <string name="strYes">Yes</string>
+    <string name="strNo">No</string>
+    <string name="strPromptExit">Do you want to exit haptic demo?</string>
+</resources>

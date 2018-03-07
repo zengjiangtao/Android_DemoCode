@@ -1,0 +1,27 @@
+<resources>
+    <string name="app_name">Haptic Demo</string>
+    <string name="strTitle">Haptic Demo 2.1</string>
+    <string name="strEmpty"> </string>
+    <string name="strYes">Yes</string>
+    <string name="strNo">No</string>
+    <string name="strPromptExit">Do you want to exit haptic demo?</string>
+
+    <string name="strKeyA">A</string>
+    <string name="strKeyB">B</string>
+    <string name="strKeyC">C</string>
+    <string name="strKeyD">D</string>
+    <string name="strKeyE">E</string>
+    <string name="strKeyF">F</string>
+    <string name="strKeyG">G</string>
+    <string name="strKeyH">H</string>
+    <string name="strKeyI">I</string>
+    <string name="strKeyJ">J</string>
+    <string name="strKeyK">K</string>
+    <string name="strKeyL">L</string>
+    <string name="strKeyM">M</string>
+    <string name="strKeyN">N</string>
+    <string name="strKeyO">O</string>
+    <string name="strKeyP">P</string>
+
+    <string name="strReadPermission">We need permission to read external storage!!</string>
+</resources>
