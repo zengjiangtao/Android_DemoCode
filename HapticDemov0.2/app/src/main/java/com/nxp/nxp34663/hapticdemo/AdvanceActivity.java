@@ -49,6 +49,7 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.pm.PackageManager;
+//import android.media.AudioAttributes;
 import android.os.Build;
 import android.os.Bundle;
 //import android.os.VibrationEffect;
@@ -81,7 +82,9 @@ public class AdvanceActivity extends AppCompatActivity {
     /* total buttons is app buttons + virtual button + hardkey. */
     private static final int NUMBER_OF_ALL_BUTTONS = NUMBER_OF_APP_BUTTONS + NUMBER_OF_VIRTUAL_BUTTONS + NUMBER_OF_HARDKEY;
     
-    private static final String INI_FILENAME = "/sdcard/hapticdemo.ini";
+    private static final String INI_FILE_IN_SDCARD = "/sdcard/hapticdemo.ini";
+    private static final String INI_FILE_IN_INTERNAL = "/data/hapticdemo.ini";
+
     private KeyConfiguration[] mKeyConfigurations;
 
     private void PlayPattern(int ObjID, int time, String msg) {
@@ -89,18 +92,28 @@ public class AdvanceActivity extends AppCompatActivity {
             Log.d(TAG, "PlayPattern()    ObjID="+ ObjID + "  time=" + time);
         else
             Log.d(TAG, msg + "\t\tPlayPattern() ObjID="+ ObjID + "  time=" + time);
-
-        //if (Build.VERSION.SDK_INT >= 50 /*26*/ ) {
-        //    /* set pattern ID first, then play it. */
-        //    mVibrator.vibrate(VibrationEffect.createOneShot(ObjID, VibrationEffect.DEFAULT_AMPLITUDE));
-        //    mVibrator.vibrate(VibrationEffect.createOneShot(time, VibrationEffect.DEFAULT_AMPLITUDE));
-        //} else
-
-        {
-            mVibrator.vibrate(ObjID);
-            mVibrator.vibrate(time);
+/*
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O ) {
+            mVibrator.vibrate(VibrationEffect.createOneShot(ObjID, VibrationEffect.DEFAULT_AMPLITUDE));
+            mVibrator.vibrate(VibrationEffect.createOneShot(time, VibrationEffect.DEFAULT_AMPLITUDE));
         }
+        else
+        {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                mVibrator.vibrate(ObjID, new AudioAttributes.Builder().build());
+                mVibrator.vibrate(time, new AudioAttributes.Builder().build());
+            }
+            else
+            {
+                mVibrator.vibrate(ObjID);
+                mVibrator.vibrate(time);
+            }
+        }
+*/
+        mVibrator.vibrate(ObjID);
+        mVibrator.vibrate(time);
     }
+
 
     class ButtonListener implements View.OnTouchListener {
         public boolean onTouch(View v, MotionEvent event) {
@@ -201,12 +214,16 @@ public class AdvanceActivity extends AppCompatActivity {
 
     private void LoadConfigurationFileToMemory(int mode){
         /* check configuration file. */
-        if ((mode != 0) && FileIsExist(INI_FILENAME)) {
+        if ((mode != 0) && (FileIsExist(INI_FILE_IN_SDCARD) || FileIsExist(INI_FILE_IN_INTERNAL))) {
             IniReader iniReader;
             Log.d(TAG, "LoadConfigurationFileToMemory() parsing ini file");
             try {
                 int ObjID1, Time1, ObjID2, Time2;
-                iniReader = new IniReader(INI_FILENAME);
+                if (FileIsExist(INI_FILE_IN_SDCARD))
+                    iniReader = new IniReader(INI_FILE_IN_SDCARD);
+                else
+                    iniReader = new IniReader(INI_FILE_IN_INTERNAL);
+
                 /* load button's configuration parameters. */
                 for (int i = 0; i < NUMBER_OF_ALL_BUTTONS; i++) {
                     /* read parameter from memory. */

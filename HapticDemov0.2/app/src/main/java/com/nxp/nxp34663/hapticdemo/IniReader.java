@@ -59,6 +59,7 @@ public class IniReader {
     private transient Properties current;
 
     public IniReader(String filename) throws IOException {
+        Log.d(TAG, "Loading " + filename);
         BufferedReader reader = new BufferedReader(new FileReader(filename));
         read(reader);
         reader.close();
